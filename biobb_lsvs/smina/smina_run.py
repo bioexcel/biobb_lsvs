@@ -6,7 +6,7 @@ import os
 from biobb_common.generic.biobb_object import BiobbObject
 from biobb_common.configuration import settings
 from biobb_common.tools.file_utils import launchlogger
-from biobb_vs.smina.common import check_input_path, check_output_path
+from biobb_lsvs.smina.common import check_input_path, check_output_path
 
 
 class SminaRun(BiobbObject):

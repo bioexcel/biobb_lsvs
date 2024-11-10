@@ -23,7 +23,7 @@ setuptools.setup(
     python_requires='>=3.8',
     entry_points={
         "console_scripts": [
-            "smina_run = smina_run = biobb_vs.smina.smina_run:main"
+            "smina_run = biobb_lsvs.smina.smina_run:main"
         ]
     },
     classifiers=(
