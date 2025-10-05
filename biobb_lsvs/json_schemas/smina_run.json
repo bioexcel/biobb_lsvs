@@ -1,0 +1,233 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "http://bioexcel.eu/biobb_lsvs/json_schemas/1.0/smina_run",
+    "name": "biobb_lsvs sminaRun",
+    "title": "Wrapper of the smina software.",
+    "description": "This class performs docking of ligands to a target protein via the smina software.",
+    "type": "object",
+    "info": {
+        "wrapped_software": {
+            "name": "smina",
+            "version": ">=October 15, 2019",
+            "license": "GNU General Public License version 2.0"
+        },
+        "ontology": {
+            "name": "EDAM",
+            "schema": "http://edamontology.org/EDAM.owl"
+        }
+    },
+    "required": [
+        "input_ligands_sdf_path",
+        "input_receptor_pdbqt_path",
+        "input_site_coords_path",
+        "output_sdf_path"
+    ],
+    "properties": {
+        "input_ligands_sdf_path": {
+            "type": "string",
+            "description": "Path to the input SDF ligands",
+            "filetype": "input",
+            "sample": "https://github.com/bioexcel/biobb_lsvs/raw/master/biobb_lsvs/test/data/smina/smina_ligands.sdf",
+            "enum": [
+                ".*\\.sdf$"
+            ],
+            "file_formats": [
+                {
+                    "extension": ".*\\.sdf$",
+                    "description": "Path to the input SDF ligands",
+                    "edam": "format_3814"
+                }
+            ]
+        },
+        "input_receptor_pdbqt_path": {
+            "type": "string",
+            "description": "Path to the input PDBQT receptor",
+            "filetype": "input",
+            "sample": "https://github.com/bioexcel/biobb_lsvs/raw/master/biobb_lsvs/test/data/smina/smina_receptor.pdbqt",
+            "enum": [
+                ".*\\.pdbqt$"
+            ],
+            "file_formats": [
+                {
+                    "extension": ".*\\.pdbqt$",
+                    "description": "Path to the input PDBQT receptor",
+                    "edam": "format_1476"
+                }
+            ]
+        },
+        "input_site_coords_path": {
+            "type": "string",
+            "description": "Path to the docking box coordinates file",
+            "filetype": "input",
+            "sample": "https://github.com/bioexcel/biobb_lsvs/raw/master/biobb_lsvs/test/data/smina/smina_site_coords.yml",
+            "enum": [
+                ".*\\.yml$"
+            ],
+            "file_formats": [
+                {
+                    "extension": ".*\\.yml$",
+                    "description": "Path to the docking box coordinates file",
+                    "edam": "format_3750"
+                }
+            ]
+        },
+        "output_sdf_path": {
+            "type": "string",
+            "description": "Path to the output SDF file",
+            "filetype": "output",
+            "sample": "https://github.com/bioexcel/biobb_lsvs/raw/master/biobb_lsvs/test/reference/smina/ref_output_smina.sdf",
+            "enum": [
+                ".*\\.sdf$"
+            ],
+            "file_formats": [
+                {
+                    "extension": ".*\\.sdf$",
+                    "description": "Path to the output SDF file",
+                    "edam": "format_3814"
+                }
+            ]
+        },
+        "output_log_path": {
+            "type": "string",
+            "description": "Path to the log file",
+            "filetype": "output",
+            "sample": "https://github.com/bioexcel/biobb_lsvs/raw/master/biobb_lsvs/test/reference/smina/ref_output_smina.log",
+            "enum": [
+                ".*\\.log$"
+            ],
+            "file_formats": [
+                {
+                    "extension": ".*\\.log$",
+                    "description": "Path to the log file",
+                    "edam": "format_2330"
+                }
+            ]
+        },
+        "properties": {
+            "type": "object",
+            "properties": {
+                "cpu": {
+                    "type": "integer",
+                    "default": 1,
+                    "wf_prop": false,
+                    "description": "the number of CPUs to use.",
+                    "min": 1,
+                    "max": 1000,
+                    "step": 1
+                },
+                "exhaustiveness": {
+                    "type": "integer",
+                    "default": 8,
+                    "wf_prop": false,
+                    "description": "exhaustiveness of the global search (roughly proportional to time).",
+                    "min": 1,
+                    "max": 10000,
+                    "step": 1
+                },
+                "num_modes": {
+                    "type": "integer",
+                    "default": 9,
+                    "wf_prop": false,
+                    "description": "maximum number of binding modes to generate.",
+                    "min": 1,
+                    "max": 1000,
+                    "step": 1
+                },
+                "scoring": {
+                    "type": "string",
+                    "default": "vinardo",
+                    "wf_prop": false,
+                    "description": "scoring function to use in smina."
+                },
+                "seed": {
+                    "type": "integer",
+                    "default": 42,
+                    "wf_prop": false,
+                    "description": "seed for random number generator",
+                    "min": -99999,
+                    "max": 99999,
+                    "step": 1
+                },
+                "min_rmsd_filter": {
+                    "type": "integer",
+                    "default": 1,
+                    "wf_prop": false,
+                    "description": "minimum RMSD between output poses.",
+                    "min": 1,
+                    "max": 1000,
+                    "step": 1
+                },
+                "energy_range": {
+                    "type": "integer",
+                    "default": 3,
+                    "wf_prop": false,
+                    "description": "maximum energy difference between the best binding mode and the worst one displayed (kcal/mol).",
+                    "min": 1,
+                    "max": 1000,
+                    "step": 1
+                },
+                "binary_path": {
+                    "type": "string",
+                    "default": "smina",
+                    "wf_prop": false,
+                    "description": "path to smina in your local computer."
+                },
+                "remove_tmp": {
+                    "type": "boolean",
+                    "default": true,
+                    "wf_prop": true,
+                    "description": "Remove temporary files."
+                },
+                "restart": {
+                    "type": "boolean",
+                    "default": false,
+                    "wf_prop": true,
+                    "description": "Do not execute if output files exist."
+                },
+                "sandbox_path": {
+                    "type": "string",
+                    "default": "./",
+                    "wf_prop": true,
+                    "description": "Parent path to the sandbox directory."
+                },
+                "container_path": {
+                    "type": "string",
+                    "default": null,
+                    "wf_prop": false,
+                    "description": "Container path definition."
+                },
+                "container_image": {
+                    "type": "string",
+                    "default": "biocontainers/smina:v1.1.2-5b1-deb_cv1",
+                    "wf_prop": false,
+                    "description": "Container image definition."
+                },
+                "container_volume_path": {
+                    "type": "string",
+                    "default": "/tmp",
+                    "wf_prop": false,
+                    "description": "Container volume path definition."
+                },
+                "container_working_dir": {
+                    "type": "string",
+                    "default": null,
+                    "wf_prop": false,
+                    "description": "Container working directory definition."
+                },
+                "container_user_id": {
+                    "type": "string",
+                    "default": null,
+                    "wf_prop": false,
+                    "description": "Container user_id definition."
+                },
+                "container_shell_path": {
+                    "type": "string",
+                    "default": "/bin/bash",
+                    "wf_prop": false,
+                    "description": "Path to default shell inside the container."
+                }
+            }
+        }
+    },
+    "additionalProperties": false
+}

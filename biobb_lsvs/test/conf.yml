@@ -1,0 +1,31 @@
+global_properties:
+  working_dir_path: /tmp/biobb/unitests
+
+# smina
+
+smina_run:
+  paths:
+    input_ligands_sdf_path: file:test_data_dir/smina/smina_ligands.sdf
+    input_receptor_pdbqt_path: file:test_data_dir/smina/smina_receptor.pdbqt
+    input_site_coords_path: file:test_data_dir/smina/smina_site_coords.yml
+    output_sdf_path: output_sdf_path.sdf
+    ref_output_sdf_path: file:test_reference_dir/smina/ref_output_smina.sdf
+    output_log_path: output_log_path.log
+    ref_output_log_path: file:test_reference_dir/smina/ref_output_smina.log
+  properties:
+    remove_tmp: true
+
+smina_run_docker:
+  paths:
+    input_ligands_sdf_path: file:test_data_dir/smina/smina_ligands.sdf
+    input_receptor_pdbqt_path: file:test_data_dir/smina/smina_receptor.pdbqt
+    input_site_coords_path: file:test_data_dir/smina/smina_site_coords.yml
+    output_sdf_path: output_sdf_path.sdf
+    ref_output_sdf_path: file:test_reference_dir/smina/ref_output_smina.sdf
+    output_log_path: output_log_path.log
+    ref_output_log_path: file:test_reference_dir/smina/ref_output_smina.log
+  properties:
+    container_path: docker
+    container_image: biocontainers/smina:v1.1.2-5b1-deb_cv1 #TODO
+    container_volume_path: /tmp
+    container_user_id: "1001"

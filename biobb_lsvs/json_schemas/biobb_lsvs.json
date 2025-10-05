@@ -1,0 +1,34 @@
+{
+    "_id": "biobb_lsvs",
+    "desc": "biobb_lsvs is the Biobb module collection to perform large scale virtual screening studies.",
+    "github": "https://github.com/bioexcel/biobb_lsvs",
+    "readthedocs": "https://biobb-lsvs.readthedocs.io/en/latest/",
+    "conda": "https://anaconda.org/bioconda/biobb_lsvs",
+    "docker": "https://quay.io/biocontainers/biobb_lsvs:5.1.0--pyhdfd78af_0",
+    "singularity": "https://depot.galaxyproject.org/singularity/biobb_lsvs:5.1.0--pyhdfd78af_0",
+    "version": "5.1.0",
+    "rest": true,
+    "tools": [
+        {
+            "block": "sminaRun",
+            "tool": "smina",
+            "desc": "Wrapper of the smina software.",
+            "exec": "smina_run",
+            "docs": "https://biobb-lsvs.readthedocs.io/en/latest/smina.html#module-smina.smina_run",
+            "rest": true
+        }
+    ],
+    "dep_pypi": [
+        "install_requires=['biobb_common==5.1.0']",
+        "python_requires='>=3.9'"
+    ],
+    "dep_conda": [
+        "python >=3.9",
+        "biobb_common ==5.1.0",
+        "smina ==2020.12.10"
+    ],
+    "keywords": [
+        "virtual screening",
+        "smina"
+    ]
+}
