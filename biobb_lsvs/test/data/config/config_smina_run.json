@@ -4,6 +4,6 @@
     "exhaustiveness": 2,
     "num_modes": 1,
     "remove_tmp": true,
-    "check_extensions": false
+    "check_extensions": true
   }
 }

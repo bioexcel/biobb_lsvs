@@ -35,7 +35,7 @@ class sminaRun(BiobbObject):
             * **energy_range** (*int*) - (3) [1~1000|1] maximum energy difference between the best binding mode and the worst one displayed (kcal/mol).
             * **binary_path** (*string*) - ('smina') path to smina in your local computer.
             * **scoring** (*string*) - ('vinardo') scoring function to be used.
-            * **seed** (*int*) - ('random') [-99999-99999] random number generator seed. 
+            * **seed** (*int*) - ('random') [-9999999-9999999] random number generator seed. 
             * **remove_tmp** (*bool*) - (True) [WF property] Remove temporal files.
             * **restart** (*bool*) - (False) [WF property] Do not execute if output files exist.
             * **sandbox_path** (*str*) - ("./") [WF property] Parent path to the sandbox directory.
@@ -99,15 +99,15 @@ class sminaRun(BiobbObject):
                 "output_log_path": output_log_path,
             },
         }
-        rand_seed = randint(-99999,99999)
+        rand_seed = randint(-9999999,9999999)
         # Parse box centroid and dimensions from input_site_coords YAML
         self.coords = self.parse_site_coords()
 
         # Properties specific for BB
-        self.cpu = properties.get("cpu", 2)
-        self.exhaustiveness = properties.get("exhaustiveness", 2)
-        self.num_modes = properties.get("num_modes", 1)
-        self.scoring = properties.get("scoring", "vinardo") # FIXME: What is the default?
+        self.cpu = properties.get("cpu", 1)
+        self.exhaustiveness = properties.get("exhaustiveness", 8)
+        self.num_modes = properties.get("num_modes", 9)
+        self.scoring = properties.get("scoring", "vina")
         self.seed = properties.get("seed", rand_seed)
         self.min_rmsd_filter = properties.get("min_rmsd_filter", 1)
         self.energy_range = properties.get("energy_range", 3)
