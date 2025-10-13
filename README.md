@@ -32,14 +32,12 @@
 # biobb_lsvs
 
 ### Introduction
-biobb_lsvs is the Biobb module collection to perform virtual screening studies.
+biobb_lsvs is the Biobb module collection to perform large scale virtual screening studies.
 Biobb (BioExcel building blocks) packages are Python building blocks that
 create new layer of compatibility and interoperability over popular
 bioinformatics tools.
 The latest documentation of this package can be found in our readthedocs site:
 [latest API documentation](http://biobb-lsvs.readthedocs.io/en/latest/).
-
-> At the time of publishing the current version, **smina has not been compiled for the new ARM mac M1/M2 chips**. So the smina.smina_run only work in these computers through docker containers.
 
 ### Version
 v5.1.0 2025.1

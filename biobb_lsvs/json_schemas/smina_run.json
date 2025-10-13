@@ -135,17 +135,17 @@
                 },
                 "scoring": {
                     "type": "string",
-                    "default": "vinardo",
+                    "default": "vina",
                     "wf_prop": false,
                     "description": "scoring function to use in smina."
                 },
                 "seed": {
                     "type": "integer",
-                    "default": 42,
+                    "default": 0,
                     "wf_prop": false,
-                    "description": "seed for random number generator",
-                    "min": -99999,
-                    "max": 99999,
+                    "description": "seed for random number generator (default: randomly generated)",
+                    "min": -9999999,
+                    "max": 9999999,
                     "step": 1
                 },
                 "min_rmsd_filter": {

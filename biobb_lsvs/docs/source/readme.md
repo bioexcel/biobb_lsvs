@@ -32,7 +32,7 @@
 # biobb_lsvs
 
 ### Introduction
-biobb_lsvs is the Biobb module collection to perform virtual screening studies.
+biobb_lsvs is the Biobb module collection to perform large scale virtual screening studies.
 Biobb (BioExcel building blocks) packages are Python building blocks that
 create new layer of compatibility and interoperability over popular
 bioinformatics tools.

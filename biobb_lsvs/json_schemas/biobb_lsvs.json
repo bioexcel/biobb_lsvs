@@ -24,8 +24,7 @@
     ],
     "dep_conda": [
         "python >=3.9",
-        "biobb_common ==5.1.0",
-        "smina ==2020.12.10"
+        "biobb_common ==5.1.0"
     ],
     "keywords": [
         "virtual screening",

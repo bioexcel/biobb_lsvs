@@ -154,7 +154,7 @@ class sminaRun(BiobbObject):
         )
 
     def parse_site_coords(self):
-        """Parse box centroid and side lengths from site_coord.yml"""
+        """Parse box centroid position and side lengths from site_coord.yml"""
         with open(self.io_dict["in"]["input_site_coords_path"], 'r') as sc:
             coords = yaml.safe_load(sc)
         return coords
