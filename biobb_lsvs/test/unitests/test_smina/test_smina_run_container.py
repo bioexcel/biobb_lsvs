@@ -4,6 +4,7 @@ from biobb_common.tools import test_fixtures as fx
 from biobb_lsvs.smina.smina_run import smina_run
 
 
+@pytest.mark.skip(reason="docker currently not available")
 class TestSminaRunDocker():
     def setup_class(self):
         fx.test_setup(self, 'smina_run_docker')
