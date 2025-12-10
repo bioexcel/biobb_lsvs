@@ -13,6 +13,10 @@ smina_run:
     output_log_path: output_log_path.log
     ref_output_log_path: file:test_reference_dir/smina/ref_output_smina.log
   properties:
+    cpu: 2
+    exhaustiveness: 2
+    num_modes: 1
+    check_extensions: true
     remove_tmp: true
 
 smina_run_docker:

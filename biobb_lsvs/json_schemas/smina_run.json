@@ -1,15 +1,15 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "http://bioexcel.eu/biobb_lsvs/json_schemas/1.0/smina_run",
-    "name": "biobb_lsvs sminaRun",
-    "title": "Wrapper of the smina software.",
-    "description": "This class performs docking of ligands to a target protein via the smina software.",
+    "name": "biobb_lsvs SminaRun",
+    "title": "Wrapper of the smina molecular docking software.",
+    "description": "This class performs docking of ligands to a predefined site on a target protein via the smina software.",
     "type": "object",
     "info": {
         "wrapped_software": {
             "name": "smina",
             "version": ">=October 15, 2019",
-            "license": "GNU General Public License version 2.0"
+            "license": "GNU GPL v2"
         },
         "ontology": {
             "name": "EDAM",
@@ -57,7 +57,7 @@
         },
         "input_site_coords_path": {
             "type": "string",
-            "description": "Path to the docking box coordinates file",
+            "description": "Path to the yaml-file containing the binding site size and coordinates",
             "filetype": "input",
             "sample": "https://github.com/bioexcel/biobb_lsvs/raw/master/biobb_lsvs/test/data/smina/smina_site_coords.yml",
             "enum": [
@@ -66,8 +66,8 @@
             "file_formats": [
                 {
                     "extension": ".*\\.yml$",
-                    "description": "Path to the docking box coordinates file",
-                    "edam": "format_3750"
+                    "description": "Path to the yaml-file containing the binding site size and coordinates",
+                    "edam": "format_1476"
                 }
             ]
         },
@@ -83,7 +83,7 @@
                 {
                     "extension": ".*\\.sdf$",
                     "description": "Path to the output SDF file",
-                    "edam": "format_3814"
+                    "edam": "format_1476"
                 }
             ]
         },
@@ -133,21 +133,6 @@
                     "max": 1000,
                     "step": 1
                 },
-                "scoring": {
-                    "type": "string",
-                    "default": "vina",
-                    "wf_prop": false,
-                    "description": "scoring function to use in smina."
-                },
-                "seed": {
-                    "type": "integer",
-                    "default": 0,
-                    "wf_prop": false,
-                    "description": "seed for random number generator (default: randomly generated)",
-                    "min": -9999999,
-                    "max": 9999999,
-                    "step": 1
-                },
                 "min_rmsd_filter": {
                     "type": "integer",
                     "default": 1,
@@ -172,11 +157,23 @@
                     "wf_prop": false,
                     "description": "path to smina in your local computer."
                 },
+                "scoring": {
+                    "type": "string",
+                    "default": "vinardo",
+                    "wf_prop": false,
+                    "description": "scoring function to be used."
+                },
+                "seed": {
+                    "type": "integer",
+                    "default": 1234,
+                    "wf_prop": true,
+                    "description": "random number generator seed."
+                },
                 "remove_tmp": {
                     "type": "boolean",
                     "default": true,
                     "wf_prop": true,
-                    "description": "Remove temporary files."
+                    "description": "Remove temporal files."
                 },
                 "restart": {
                     "type": "boolean",

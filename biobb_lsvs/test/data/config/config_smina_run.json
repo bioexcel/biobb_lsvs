@@ -3,7 +3,7 @@
     "cpu": 2,
     "exhaustiveness": 2,
     "num_modes": 1,
-    "remove_tmp": true,
-    "check_extensions": true
+    "check_extensions": true,
+    "remove_tmp": true
   }
 }

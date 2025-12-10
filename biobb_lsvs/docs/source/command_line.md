@@ -6,20 +6,21 @@ biobb_command [-h] --config CONFIG --input_file(s) <input_file(s)> --output_file
 -----------------
 
 
-## smina_run
-Wrapper of the smina software.
+## Smina_run
+Wrapper of the smina molecular docking software.
 ### Get help
 Command:
 ```python
 smina_run -h
 ```
-    usage: smina_run [-h] [--config CONFIG] --input_ligands_sdf_path INPUT_LIGANDS_SDF_PATH --input_receptor_pdbqt_path INPUT_RECEPTOR_PDBQT_PATH --input_site_coords_path INPUT_SITE_COORDS_PATH --output_sdf_path OUTPUT_SDF_PATH [--output_log_path OUTPUT_LOG_PATH]
+    usage: smina_run [-h] [-c CONFIG] --input_ligands_sdf_path INPUT_LIGANDS_SDF_PATH --input_receptor_pdbqt_path INPUT_RECEPTOR_PDBQT_PATH --input_site_coords_path INPUT_SITE_COORDS_PATH --output_sdf_path OUTPUT_SDF_PATH [--output_log_path OUTPUT_LOG_PATH]
     
     Prepares input ligand for an smina Virtual Screening.
     
-    optional arguments:
+    options:
       -h, --help            show this help message and exit
-      --config CONFIG       Configuration file
+      -c CONFIG, --config CONFIG
+                            This file can be a YAML file, JSON file or JSON string
       --output_log_path OUTPUT_LOG_PATH
                             Path to the log file. Accepted formats: log.
     
@@ -29,7 +30,7 @@ smina_run -h
       --input_receptor_pdbqt_path INPUT_RECEPTOR_PDBQT_PATH
                             Path to the input PDBQT receptor. Accepted formats: pdbqt.
       --input_site_coords_path INPUT_SITE_COORDS_PATH
-                            Path to the YAML containing the residues belonging to the binding site. Accepted formats: yml.
+                            Path to the yaml-file containing the binding site size and coordinates. Accepted formats: yml.
       --output_sdf_path OUTPUT_SDF_PATH
                             Path to the output SDF file. Accepted formats: sdf.
 ### I / O Arguments
@@ -38,7 +39,7 @@ Syntax: input_argument (datatype) : Definition
 Config input / output arguments for this building block:
 * **input_ligands_sdf_path** (*string*): Path to the input SDF ligands. File type: input. [Sample file](https://github.com/bioexcel/biobb_lsvs/raw/master/biobb_lsvs/test/data/smina/smina_ligands.sdf). Accepted formats: SDF
 * **input_receptor_pdbqt_path** (*string*): Path to the input PDBQT receptor. File type: input. [Sample file](https://github.com/bioexcel/biobb_lsvs/raw/master/biobb_lsvs/test/data/smina/smina_receptor.pdbqt). Accepted formats: PDBQT
-* **input_site_coords_path** (*string*): Path to the YML containing the binding site coordinates. File type: input. [Sample file](https://github.com/bioexcel/biobb_lsvs/raw/master/biobb_lsvs/test/data/smina/smina_site_coords.yml). Accepted formats: YML
+* **input_site_coords_path** (*string*): Path to the yaml-file containing the binding site size and coordinates. File type: input. [Sample file](https://github.com/bioexcel/biobb_lsvs/raw/master/biobb_lsvs/test/data/smina/smina_site_coords.yml). Accepted formats: YML
 * **output_sdf_path** (*string*): Path to the output SDF file. File type: output. [Sample file](https://github.com/bioexcel/biobb_lsvs/raw/master/biobb_lsvs/test/reference/smina/ref_output_smina.sdf). Accepted formats: SDF
 * **output_log_path** (*string*): Path to the log file. File type: output. [Sample file](https://github.com/bioexcel/biobb_lsvs/raw/master/biobb_lsvs/test/reference/smina/ref_output_smina.log). Accepted formats: LOG
 ### Config
@@ -51,8 +52,8 @@ Config parameters for this building block:
 * **min_rmsd_filter** (*integer*): (1) minimum RMSD between output poses..
 * **energy_range** (*integer*): (3) maximum energy difference between the best binding mode and the worst one displayed (kcal/mol)..
 * **binary_path** (*string*): (smina) path to smina in your local computer..
-* **scoring** (*string*) - ('vinardo') scoring function to be used..
-* **seed** (*int*) - ('random') [-9999999-9999999] random number generator seed.. 
+* **scoring** (*string*): (vinardo) scoring function to be used..
+* **seed** (*integer*): (1234) random number generator seed..
 * **remove_tmp** (*boolean*): (True) Remove temporal files..
 * **restart** (*boolean*): (False) Do not execute if output files exist..
 * **sandbox_path** (*string*): (./) Parent path to the sandbox directory..
@@ -66,6 +67,10 @@ Config parameters for this building block:
 #### [Common config file](https://github.com/bioexcel/biobb_lsvs/blob/master/biobb_lsvs/test/data/config/config_smina_run.yml)
 ```python
 properties:
+  check_extensions: true
+  cpu: 2
+  exhaustiveness: 2
+  num_modes: 1
   remove_tmp: true
 
 ```
@@ -87,6 +92,10 @@ smina_run --config config_smina_run.yml --input_ligands_sdf_path smina_ligands.s
 ```python
 {
   "properties": {
+    "cpu": 2,
+    "exhaustiveness": 2,
+    "num_modes": 1,
+    "check_extensions": true,
     "remove_tmp": true
   }
 }

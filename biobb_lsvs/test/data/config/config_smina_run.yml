@@ -1,6 +1,6 @@
 properties:
+  check_extensions: true
   cpu: 2
   exhaustiveness: 2
   num_modes: 1
   remove_tmp: true
-  check_extensions: true
