@@ -6,8 +6,6 @@ import yaml
 from typing import Optional
 
 from biobb_common.generic.biobb_object import BiobbObject
-from biobb_common.tools.file_utils import launchlogger
-from biobb_lsvs.smina.common import check_input_path, check_output_path
 
 
 class SminaRun(BiobbObject):
@@ -108,62 +106,14 @@ class SminaRun(BiobbObject):
         self.binary_path = properties.get("binary_path", "smina")
         self.properties = properties
 
-        # Check the properties
-        self.check_properties(properties)
-        self.check_arguments()
-
-    def check_data_params(self, out_log, err_log):
-        """Checks all the input/output paths and parameters"""
-        self.io_dict["in"]["input_ligands_sdf_path"] = check_input_path(
-            self.io_dict["in"]["input_ligands_sdf_path"],
-            "input_ligands_sdf_path",
-            self.out_log,
-            self.__class__.__name__,
-        )
-        self.io_dict["in"]["input_receptor_pdbqt_path"] = check_input_path(
-            self.io_dict["in"]["input_receptor_pdbqt_path"],
-            "input_receptor_pdbqt_path",
-            self.out_log,
-            self.__class__.__name__,
-        )
-        self.io_dict["in"]["input_site_coords_path"] = check_input_path(
-            self.io_dict["in"]["input_site_coords_path"],
-            "input_site_coords_path",
-            self.out_log,
-            self.__class__.__name__,
-        )
-        self.io_dict["out"]["output_sdf_path"] = check_output_path(
-            self.io_dict["out"]["output_sdf_path"],
-            "output_sdf_path",
-            False,
-            self.out_log,
-            self.__class__.__name__,
-        )
-        self.io_dict["out"]["output_log_path"] = check_output_path(
-            self.io_dict["out"]["output_log_path"],
-            "output_log_path",
-            True,
-            self.out_log,
-            self.__class__.__name__,
-        )
-
     def parse_site_coords(self):
         """Parse box centroid position and side lengths from site_coord.yml"""
         with open(self.io_dict["in"]["input_site_coords_path"], 'r') as sc:
             coords = yaml.safe_load(sc)
         return coords
 
-    @launchlogger
-    def launch(self) -> int:
+    def run(self) -> int:
         """Execute the :class:`sminaRun_run <smina.smina_run.sminaRun_run>` smina.smina_run.sminaRun_run object."""
-
-        # check input/output paths and parameters
-        self.check_data_params(self.out_log, self.err_log)
-
-        # Setup Biobb
-        if self.check_restart():
-            return 0
-        self.stage_files()
 
         # create cmd
         self.cmd = [
