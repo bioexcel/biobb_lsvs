@@ -30,7 +30,7 @@ smina_run -h
       --input_receptor_pdbqt_path INPUT_RECEPTOR_PDBQT_PATH
                             Path to the input PDBQT receptor. Accepted formats: pdbqt.
       --input_site_coords_path INPUT_SITE_COORDS_PATH
-                            Path to the yaml-file containing the binding site size and coordinates. Accepted formats: yml.
+                            Path to the yaml-file containing the binding site size and coordinates. Accepted formats: yml, yaml.
       --output_sdf_path OUTPUT_SDF_PATH
                             Path to the output SDF file. Accepted formats: sdf.
 ### I / O Arguments
@@ -39,7 +39,7 @@ Syntax: input_argument (datatype) : Definition
 Config input / output arguments for this building block:
 * **input_ligands_sdf_path** (*string*): Path to the input SDF ligands. File type: input. [Sample file](https://github.com/bioexcel/biobb_lsvs/raw/master/biobb_lsvs/test/data/smina/smina_ligands.sdf). Accepted formats: SDF
 * **input_receptor_pdbqt_path** (*string*): Path to the input PDBQT receptor. File type: input. [Sample file](https://github.com/bioexcel/biobb_lsvs/raw/master/biobb_lsvs/test/data/smina/smina_receptor.pdbqt). Accepted formats: PDBQT
-* **input_site_coords_path** (*string*): Path to the yaml-file containing the binding site size and coordinates. File type: input. [Sample file](https://github.com/bioexcel/biobb_lsvs/raw/master/biobb_lsvs/test/data/smina/smina_site_coords.yml). Accepted formats: YML
+* **input_site_coords_path** (*string*): Path to the yaml-file containing the binding site size and coordinates. File type: input. [Sample file](https://github.com/bioexcel/biobb_lsvs/raw/master/biobb_lsvs/test/data/smina/smina_site_coords.yml). Accepted formats: YML, YAML
 * **output_sdf_path** (*string*): Path to the output SDF file. File type: output. [Sample file](https://github.com/bioexcel/biobb_lsvs/raw/master/biobb_lsvs/test/reference/smina/ref_output_smina.sdf). Accepted formats: SDF
 * **output_log_path** (*string*): Path to the log file. File type: output. [Sample file](https://github.com/bioexcel/biobb_lsvs/raw/master/biobb_lsvs/test/reference/smina/ref_output_smina.log). Accepted formats: LOG
 ### Config

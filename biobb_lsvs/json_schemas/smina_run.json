@@ -61,13 +61,19 @@
             "filetype": "input",
             "sample": "https://github.com/bioexcel/biobb_lsvs/raw/master/biobb_lsvs/test/data/smina/smina_site_coords.yml",
             "enum": [
-                ".*\\.yml$"
+                ".*\\.yml$",
+                ".*\\.yaml$"
             ],
             "file_formats": [
                 {
                     "extension": ".*\\.yml$",
                     "description": "Path to the yaml-file containing the binding site size and coordinates",
                     "edam": "format_1476"
+                },
+                {
+                    "extension": ".*\\.yaml$",
+                    "description": "Path to the yaml-file containing the binding site size and coordinates",
+                    "edam": "format_3750"
                 }
             ]
         },
