@@ -27,7 +27,7 @@ class SminaRun(BiobbObject):
             * **min_rmsd_filter** (*int*) - (1) [1~1000|1] minimum RMSD between output poses.
             * **energy_range** (*int*) - (3) [1~1000|1] maximum energy difference between the best binding mode and the worst one displayed (kcal/mol).
             * **binary_path** (*string*) - ('smina') path to smina in your local computer.
-            * **scoring** (*string*) - ('vinardo') scoring function to be used.
+            * **scoring** (*string*) - ('vina') scoring function to be used.
             * **seed** (*int*) - (1234) [-9999999-9999999] random number generator seed.
             * **remove_tmp** (*bool*) - (True) [WF property] Remove temporal files.
             * **restart** (*bool*) - (False) [WF property] Do not execute if output files exist.

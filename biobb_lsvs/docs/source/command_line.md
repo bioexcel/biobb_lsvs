@@ -52,7 +52,7 @@ Config parameters for this building block:
 * **min_rmsd_filter** (*integer*): (1) minimum RMSD between output poses..
 * **energy_range** (*integer*): (3) maximum energy difference between the best binding mode and the worst one displayed (kcal/mol)..
 * **binary_path** (*string*): (smina) path to smina in your local computer..
-* **scoring** (*string*): (vinardo) scoring function to be used..
+* **scoring** (*string*): (vina) scoring function to be used..
 * **seed** (*integer*): (1234) random number generator seed..
 * **remove_tmp** (*boolean*): (True) Remove temporal files..
 * **restart** (*boolean*): (False) Do not execute if output files exist..

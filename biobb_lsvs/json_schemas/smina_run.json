@@ -165,7 +165,7 @@
                 },
                 "scoring": {
                     "type": "string",
-                    "default": "vinardo",
+                    "default": "vina",
                     "wf_prop": false,
                     "description": "scoring function to be used."
                 },
