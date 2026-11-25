@@ -152,9 +152,9 @@ class SminaRun(BiobbObject):
             self.stage_io_dict["out"]["output_sdf_path"],
             "--verbosity",
             "1",
-            ">",
-            self.stage_io_dict["out"]["output_log_path"],
         ]
+        if self.stage_io_dict["out"].get("output_log_path"):
+            self.cmd.extend([">", self.stage_io_dict["out"]["output_log_path"]])
 
         # Run Biobb block
         self.run_biobb()
