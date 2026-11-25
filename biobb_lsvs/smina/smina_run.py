@@ -74,37 +74,10 @@ class SminaRun(BiobbObject):
         properties=None,
         **kwargs,
     ) -> None:
-        properties = properties or {}
+        super().__init__(**locals())
 
-        # Call parent class constructor
-        super().__init__(properties)
-        self.locals_var_dict = locals().copy()
-
-        # Input/Output files
-        self.io_dict = {
-            "in": {
-                "input_ligands_sdf_path": input_ligands_sdf_path,
-                "input_receptor_pdbqt_path": input_receptor_pdbqt_path,
-                "input_site_coords_path": input_site_coords_path
-            },
-            "out": {
-                "output_sdf_path": output_sdf_path,
-                "output_log_path": output_log_path,
-            },
-        }
         # Parse box centroid and dimensions from input_site_coords YAML
         self.coords = self.parse_site_coords()
-
-        # Properties specific for BB
-        self.cpu = properties.get("cpu", 1)
-        self.exhaustiveness = properties.get("exhaustiveness", 8)
-        self.num_modes = properties.get("num_modes", 9)
-        self.scoring = properties.get("scoring", "vina")
-        self.seed = properties.get("seed", 1234)
-        self.min_rmsd_filter = properties.get("min_rmsd_filter", 1)
-        self.energy_range = properties.get("energy_range", 3)
-        self.binary_path = properties.get("binary_path", "smina")
-        self.properties = properties
 
     def parse_site_coords(self):
         """Parse box centroid position and side lengths from site_coord.yml"""
