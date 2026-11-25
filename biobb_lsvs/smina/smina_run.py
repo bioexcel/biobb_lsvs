@@ -17,8 +17,8 @@ class SminaRun(BiobbObject):
     Args:
         input_ligands_sdf_path (str): Path to the input SDF ligands. File type: input. `Sample file <https://github.com/bioexcel/biobb_lsvs/raw/master/biobb_lsvs/test/data/smina/smina_ligands.sdf>`_. Accepted formats: sdf (edam:format_3814).
         input_receptor_pdbqt_path (str): Path to the input PDBQT receptor. File type: input. `Sample file <https://github.com/bioexcel/biobb_lsvs/raw/master/biobb_lsvs/test/data/smina/smina_receptor.pdbqt>`_. Accepted formats: pdbqt (edam:format_1476).
-        input_site_coords_path (str): Path to the yaml-file containing the binding site size and coordinates. File type: input. `Sample file <https://github.com/bioexcel/biobb_lsvs/raw/master/biobb_lsvs/test/data/smina/smina_site_coords.yml>`_. Accepted formats: yml (edam:format_1476), yaml (edam:format_3750).
-        output_sdf_path (str): Path to the output SDF file. File type: output. `Sample file <https://github.com/bioexcel/biobb_lsvs/raw/master/biobb_lsvs/test/reference/smina/ref_output_smina.sdf>`_. Accepted formats: sdf (edam:format_1476).
+        input_site_coords_path (str): Path to the yaml-file containing the binding site size and coordinates. File type: input. `Sample file <https://github.com/bioexcel/biobb_lsvs/raw/master/biobb_lsvs/test/data/smina/smina_site_coords.yml>`_. Accepted formats: yml (edam:format_3750), yaml (edam:format_3750).
+        output_sdf_path (str): Path to the output SDF file. File type: output. `Sample file <https://github.com/bioexcel/biobb_lsvs/raw/master/biobb_lsvs/test/reference/smina/ref_output_smina.sdf>`_. Accepted formats: sdf (edam:format_3814).
         output_log_path (str) (Optional): Path to the log file. File type: output. `Sample file <https://github.com/bioexcel/biobb_lsvs/raw/master/biobb_lsvs/test/reference/smina/ref_output_smina.log>`_. Accepted formats: log (edam:format_2330).
         properties (dic - Python dictionary object containing the tool parameters, not input/output files):
             * **cpu** (*int*) - (1) [1~1000|1] the number of CPUs to use.

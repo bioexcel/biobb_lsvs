@@ -68,7 +68,7 @@
                 {
                     "extension": ".*\\.yml$",
                     "description": "Path to the yaml-file containing the binding site size and coordinates",
-                    "edam": "format_1476"
+                    "edam": "format_3750"
                 },
                 {
                     "extension": ".*\\.yaml$",
@@ -89,7 +89,7 @@
                 {
                     "extension": ".*\\.sdf$",
                     "description": "Path to the output SDF file",
-                    "edam": "format_1476"
+                    "edam": "format_3814"
                 }
             ]
         },
