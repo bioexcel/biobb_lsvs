@@ -1,0 +1,28 @@
+name: tests containers
+
+on:
+  # workflow_dispatch
+  push:
+    branches: [ main ]
+    paths-ignore:
+      - '.gitignore'
+      - '.readthedocs.yaml'
+      - 'LICENSE'
+      - 'setup.py'
+      - 'README.md'
+      - 'CITATION.cff'
+      - 'references.jsonld'
+      - '**/docs/**'
+      - '**/json_schemas/**'
+      - '.github/workflows/pr-tests.yml'
+      - '**/test/data/**'
+      - '**/test/references/**'
+      - '.github/workflows/linting_and_testing.yml'
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  test_containers:
+    uses: bioexcel/biobb/.github/workflows/test_containers.yml@master
+    with:
+      biobb-common-ref: ${{ github.event_name == 'pull_request' && 'master' || '' }}
