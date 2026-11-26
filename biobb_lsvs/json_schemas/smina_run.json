@@ -27,7 +27,7 @@
             "type": "string",
             "description": "Path to the input SDF ligands",
             "filetype": "input",
-            "sample": "https://github.com/bioexcel/biobb_lsvs/raw/master/biobb_lsvs/test/data/smina/smina_ligands.sdf",
+            "sample": "https://github.com/bioexcel/biobb_lsvs/raw/main/biobb_lsvs/test/data/smina/smina_ligands.sdf",
             "enum": [
                 ".*\\.sdf$"
             ],
@@ -43,7 +43,7 @@
             "type": "string",
             "description": "Path to the input PDBQT receptor",
             "filetype": "input",
-            "sample": "https://github.com/bioexcel/biobb_lsvs/raw/master/biobb_lsvs/test/data/smina/smina_receptor.pdbqt",
+            "sample": "https://github.com/bioexcel/biobb_lsvs/raw/main/biobb_lsvs/test/data/smina/smina_receptor.pdbqt",
             "enum": [
                 ".*\\.pdbqt$"
             ],
@@ -59,7 +59,7 @@
             "type": "string",
             "description": "Path to the yaml-file containing the binding site size and coordinates",
             "filetype": "input",
-            "sample": "https://github.com/bioexcel/biobb_lsvs/raw/master/biobb_lsvs/test/data/smina/smina_site_coords.yml",
+            "sample": "https://github.com/bioexcel/biobb_lsvs/raw/main/biobb_lsvs/test/data/smina/smina_site_coords.yml",
             "enum": [
                 ".*\\.yml$",
                 ".*\\.yaml$"
@@ -81,7 +81,7 @@
             "type": "string",
             "description": "Path to the output SDF file",
             "filetype": "output",
-            "sample": "https://github.com/bioexcel/biobb_lsvs/raw/master/biobb_lsvs/test/reference/smina/ref_output_smina.sdf",
+            "sample": "https://github.com/bioexcel/biobb_lsvs/raw/main/biobb_lsvs/test/reference/smina/ref_output_smina.sdf",
             "enum": [
                 ".*\\.sdf$"
             ],
@@ -97,7 +97,7 @@
             "type": "string",
             "description": "Path to the log file",
             "filetype": "output",
-            "sample": "https://github.com/bioexcel/biobb_lsvs/raw/master/biobb_lsvs/test/reference/smina/ref_output_smina.log",
+            "sample": "https://github.com/bioexcel/biobb_lsvs/raw/main/biobb_lsvs/test/reference/smina/ref_output_smina.log",
             "enum": [
                 ".*\\.log$"
             ],
@@ -140,22 +140,22 @@
                     "step": 1
                 },
                 "min_rmsd_filter": {
-                    "type": "integer",
-                    "default": 1,
+                    "type": "number",
+                    "default": 1.0,
                     "wf_prop": false,
                     "description": "minimum RMSD between output poses.",
-                    "min": 1,
-                    "max": 1000,
-                    "step": 1
+                    "min": 0.0,
+                    "max": 1000.0,
+                    "step": 0.1
                 },
                 "energy_range": {
-                    "type": "integer",
-                    "default": 3,
+                    "type": "number",
+                    "default": 3.0,
                     "wf_prop": false,
                     "description": "maximum energy difference between the best binding mode and the worst one displayed (kcal/mol).",
-                    "min": 1,
-                    "max": 1000,
-                    "step": 1
+                    "min": 0.0,
+                    "max": 1000.0,
+                    "step": 0.1
                 },
                 "binary_path": {
                     "type": "string",
@@ -172,8 +172,11 @@
                 "seed": {
                     "type": "integer",
                     "default": 1234,
-                    "wf_prop": true,
-                    "description": "random number generator seed."
+                    "wf_prop": false,
+                    "description": "random number generator seed.",
+                    "min": -9999999,
+                    "max": 9999999,
+                    "step": 1
                 },
                 "remove_tmp": {
                     "type": "boolean",
@@ -207,7 +210,7 @@
                 },
                 "container_volume_path": {
                     "type": "string",
-                    "default": "/tmp",
+                    "default": "/data",
                     "wf_prop": false,
                     "description": "Container volume path definition."
                 },
@@ -219,7 +222,7 @@
                 },
                 "container_shell_path": {
                     "type": "string",
-                    "default": "/bin/bash",
+                    "default": "/bin/bash -c",
                     "wf_prop": false,
                     "description": "Path to default shell inside the container."
                 }

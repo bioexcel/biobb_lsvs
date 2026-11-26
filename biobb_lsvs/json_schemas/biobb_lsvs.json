@@ -10,7 +10,7 @@
     "rest": true,
     "tools": [
         {
-            "block": "sminaRun",
+            "block": "SminaRun",
             "tool": "smina",
             "desc": "Wrapper of the smina software.",
             "exec": "smina_run",

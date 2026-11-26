@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-"""Module containing the sminaRun class and the command line interface."""
+"""Module containing the SminaRun class and the command line interface."""
 
 import yaml
 from typing import Optional
@@ -15,28 +15,28 @@ class SminaRun(BiobbObject):
     | This class performs docking of ligands to a predefined site on a target protein via the `smina <https://sourceforge.net/projects/smina/>`_ software.
 
     Args:
-        input_ligands_sdf_path (str): Path to the input SDF ligands. File type: input. `Sample file <https://github.com/bioexcel/biobb_lsvs/raw/master/biobb_lsvs/test/data/smina/smina_ligands.sdf>`_. Accepted formats: sdf (edam:format_3814).
-        input_receptor_pdbqt_path (str): Path to the input PDBQT receptor. File type: input. `Sample file <https://github.com/bioexcel/biobb_lsvs/raw/master/biobb_lsvs/test/data/smina/smina_receptor.pdbqt>`_. Accepted formats: pdbqt (edam:format_1476).
-        input_site_coords_path (str): Path to the yaml-file containing the binding site size and coordinates. File type: input. `Sample file <https://github.com/bioexcel/biobb_lsvs/raw/master/biobb_lsvs/test/data/smina/smina_site_coords.yml>`_. Accepted formats: yml (edam:format_3750), yaml (edam:format_3750).
-        output_sdf_path (str): Path to the output SDF file. File type: output. `Sample file <https://github.com/bioexcel/biobb_lsvs/raw/master/biobb_lsvs/test/reference/smina/ref_output_smina.sdf>`_. Accepted formats: sdf (edam:format_3814).
-        output_log_path (str) (Optional): Path to the log file. File type: output. `Sample file <https://github.com/bioexcel/biobb_lsvs/raw/master/biobb_lsvs/test/reference/smina/ref_output_smina.log>`_. Accepted formats: log (edam:format_2330).
+        input_ligands_sdf_path (str): Path to the input SDF ligands. File type: input. `Sample file <https://github.com/bioexcel/biobb_lsvs/raw/main/biobb_lsvs/test/data/smina/smina_ligands.sdf>`_. Accepted formats: sdf (edam:format_3814).
+        input_receptor_pdbqt_path (str): Path to the input PDBQT receptor. File type: input. `Sample file <https://github.com/bioexcel/biobb_lsvs/raw/main/biobb_lsvs/test/data/smina/smina_receptor.pdbqt>`_. Accepted formats: pdbqt (edam:format_1476).
+        input_site_coords_path (str): Path to the yaml-file containing the binding site size and coordinates. File type: input. `Sample file <https://github.com/bioexcel/biobb_lsvs/raw/main/biobb_lsvs/test/data/smina/smina_site_coords.yml>`_. Accepted formats: yml (edam:format_3750), yaml (edam:format_3750).
+        output_sdf_path (str): Path to the output SDF file. File type: output. `Sample file <https://github.com/bioexcel/biobb_lsvs/raw/main/biobb_lsvs/test/reference/smina/ref_output_smina.sdf>`_. Accepted formats: sdf (edam:format_3814).
+        output_log_path (str) (Optional): Path to the log file. File type: output. `Sample file <https://github.com/bioexcel/biobb_lsvs/raw/main/biobb_lsvs/test/reference/smina/ref_output_smina.log>`_. Accepted formats: log (edam:format_2330).
         properties (dic - Python dictionary object containing the tool parameters, not input/output files):
             * **cpu** (*int*) - (1) [1~1000|1] the number of CPUs to use.
             * **exhaustiveness** (*int*) - (8) [1~10000|1] exhaustiveness of the global search (roughly proportional to time).
             * **num_modes** (*int*) - (9) [1~1000|1] maximum number of binding modes to generate.
-            * **min_rmsd_filter** (*int*) - (1) [1~1000|1] minimum RMSD between output poses.
-            * **energy_range** (*int*) - (3) [1~1000|1] maximum energy difference between the best binding mode and the worst one displayed (kcal/mol).
+            * **min_rmsd_filter** (*float*) - (1.0) [0~1000|0.1] minimum RMSD between output poses.
+            * **energy_range** (*float*) - (3.0) [0~1000|0.1] maximum energy difference between the best binding mode and the worst one displayed (kcal/mol).
             * **binary_path** (*string*) - ('smina') path to smina in your local computer.
             * **scoring** (*string*) - ('vina') scoring function to be used.
-            * **seed** (*int*) - (1234) [-9999999-9999999] random number generator seed.
+            * **seed** (*int*) - (1234) [-9999999~9999999|1] random number generator seed.
             * **remove_tmp** (*bool*) - (True) [WF property] Remove temporal files.
             * **restart** (*bool*) - (False) [WF property] Do not execute if output files exist.
             * **sandbox_path** (*str*) - ("./") [WF property] Parent path to the sandbox directory.
             * **container_path** (*str*) - (None) Container path definition.
             * **container_image** (*str*) - ('biocontainers/smina:v1.1.2-5b1-deb_cv1') Container image definition.
-            * **container_volume_path** (*str*) - ('/tmp') Container volume path definition.
+            * **container_volume_path** (*str*) - ('/data') Container volume path definition.
             * **container_user_id** (*str*) - (None) Container user_id definition.
-            * **container_shell_path** (*str*) - ('/bin/bash') Path to default shell inside the container.
+            * **container_shell_path** (*str*) - ('/bin/bash -c') Path to default shell inside the container.
 
     Examples:
         This is a use example of how to use the building block from Python::
