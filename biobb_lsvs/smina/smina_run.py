@@ -75,56 +75,23 @@ class SminaRun(BiobbObject):
     ) -> None:
         super().__init__(**locals())
 
-        # Parse box centroid and dimensions from input_site_coords YAML
-        self.coords = self.parse_site_coords()
-
-    def parse_site_coords(self):
-        """Parse box centroid position and side lengths from site_coord.yml"""
-        with open(self.io_dict["in"]["input_site_coords_path"], 'r') as sc:
-            coords = yaml.safe_load(sc)
-        return coords
+    def prepare(self) -> None:
+        """Go from the site coordinates YAML to the docking box: centroid and size in x, y, z."""
+        with open(self.io_dict["in"]["input_site_coords_path"]) as site_coords_file:
+            self.coords = yaml.safe_load(site_coords_file)
 
     def run(self) -> None:
-        """Execute the :class:`sminaRun_run <smina.smina_run.sminaRun_run>` smina.smina_run.sminaRun_run object."""
-
-        # create cmd
-        self.cmd = [
-            self.binary_path,
-            "--ligand",
-            self.stage_io_dict["in"]["input_ligands_sdf_path"],
-            "--receptor",
-            self.stage_io_dict["in"]["input_receptor_pdbqt_path"],
-            "--cpu",
-            str(self.cpu),
-            "--exhaustiveness",
-            str(self.exhaustiveness),
-            "--num_modes",
-            str(self.num_modes),
-            "--center_x",
-            str(self.coords["centroid"]["x"]),
-            "--center_y",
-            str(self.coords["centroid"]["y"]),
-            "--center_z",
-            str(self.coords["centroid"]["z"]),
-            "--size_x",
-            str(self.coords["size"]["x"]),
-            "--size_y",
-            str(self.coords["size"]["y"]),
-            "--size_z",
-            str(self.coords["size"]["z"]),
-            "--scoring",
-            str(self.scoring),
-            "--seed",
-            str(self.seed),
-            "--min_rmsd_filter",
-            str(self.min_rmsd_filter),
-            "--energy_range",
-            str(self.energy_range),
-            "--out",
-            self.stage_io_dict["out"]["output_sdf_path"],
-            "--verbosity",
-            "1",
-        ]
+        """Execute the :class:`SminaRun <smina.smina_run.SminaRun>` object."""
+        self.cmd = [self.binary_path,
+                    "--ligand", self.stage_io_dict["in"]["input_ligands_sdf_path"],
+                    "--receptor", self.stage_io_dict["in"]["input_receptor_pdbqt_path"],
+                    "--out", self.stage_io_dict["out"]["output_sdf_path"],
+                    "--verbosity", "1"]
+        for prop in ("cpu", "exhaustiveness", "num_modes", "scoring", "seed", "min_rmsd_filter", "energy_range"):
+            self.cmd += [f"--{prop}", str(getattr(self, prop))]
+        for flag, key in (("center", "centroid"), ("size", "size")):
+            for axis in "xyz":
+                self.cmd += [f"--{flag}_{axis}", str(self.coords[key][axis])]
         if self.stage_io_dict["out"].get("output_log_path"):
             self.cmd.extend([">", self.stage_io_dict["out"]["output_log_path"]])
 
