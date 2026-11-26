@@ -5,7 +5,7 @@
 import yaml
 from typing import Optional
 
-from biobb_common.generic.biobb_object import BiobbObject
+from biobb_common.generic.biobb_object import BiobbObject, launcher
 
 
 class SminaRun(BiobbObject):
@@ -66,12 +66,12 @@ class SminaRun(BiobbObject):
 
     def __init__(
         self,
-        input_ligands_sdf_path,
-        input_receptor_pdbqt_path,
-        input_site_coords_path,
-        output_sdf_path,
-        output_log_path=None,
-        properties=None,
+        input_ligands_sdf_path: str,
+        input_receptor_pdbqt_path: str,
+        input_site_coords_path: str,
+        output_sdf_path: str,
+        output_log_path: Optional[str] = None,
+        properties: Optional[dict] = None,
         **kwargs,
     ) -> None:
         super().__init__(**locals())
@@ -133,22 +133,7 @@ class SminaRun(BiobbObject):
         self.run_biobb()
 
 
-def smina_run(
-    input_ligands_sdf_path: str,
-    input_receptor_pdbqt_path: str,
-    input_site_coords_path: str,
-    output_sdf_path: str,
-    output_log_path: Optional[str] = None,
-    properties: Optional[dict] = None,
-    **kwargs,
-) -> int:
-    """Execute the :class:`SminaRun <smina.smina_run.SminaRun>` class and
-    execute the :meth:`launch() <smina.smina_run.SminaRun.launch>` method."""
-    return SminaRun(**dict(locals())).launch()
-
-
-smina_run.__doc__ = SminaRun.__doc__
-main = SminaRun.get_main(smina_run, 'Prepares input ligand for an smina Virtual Screening.')
+smina_run = launcher(SminaRun)
 
 if __name__ == "__main__":
-    main()
+    SminaRun.main()
